@@ -15,10 +15,10 @@ enum RegExPattern {
     WORD("[\\w]+", "Word could contain only letters, numbers and underscores.");
 
     public final String message;
-    public final Predicate<String> valid;
+    public final Predicate<String> validator;
 
-    RegExPattern(@NonNull String valid, @NonNull String message) {
+    RegExPattern(@NonNull String regex, @NonNull String message) {
         this.message = message;
-        this.valid = Pattern.compile(valid).asMatchPredicate();
+        this.validator = Pattern.compile(regex).asMatchPredicate();
     }
 }
