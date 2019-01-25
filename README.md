@@ -31,10 +31,6 @@ my other github repo: https://github.com/mtumilowicz/java11-vavr-either
     
     In each case error messages stored in enum is a good approach
     but when it comes to `Either` - it is very natural.
-
-    **Shown approach with error messages encapsulated in enum
-    are much more cleaner than putting them in properties files
-    or literal strings.**
     
 * error messages
     ```
@@ -69,7 +65,9 @@ my other github repo: https://github.com/mtumilowicz/java11-vavr-either
         }
     }
     ```
-
+**Shown approach with error messages encapsulated in enum
+    are much more cleaner than putting them in properties files
+    or literal strings.**
 # tests
 ```
 def "test send complete order"() {
