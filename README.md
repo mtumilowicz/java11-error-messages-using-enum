@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.com/mtumilowicz/java11-error-messages-using-enum.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-error-messages-using-enum)
 
 # java11-error-messages-using-enum
-Simple implementation of error messages handling using enum.
+Simple implementation of handling error messages using enum.
 
 # preface
 Creating enum with error messages is very handy practice
 when you try to write your code without exceptions (by 
-using `Either` for example). For Either basics you should refer
+using `Either` for example). For `Either` basics you should refer
 my other github repo: https://github.com/mtumilowicz/java11-vavr-either
 
 # project description
@@ -25,13 +25,17 @@ my other github repo: https://github.com/mtumilowicz/java11-vavr-either
     * when the order is complete - sends it
     * when the order is incomplete - message
 
-We could model it in two different ways:
-1. by throwing exception
-1. by returning `Either`
+* We could model it in two different ways:
+    1. by throwing exception
+    1. by returning `Either`
+    
+    In each case error messages stored in enum is a good approach
+    but when it comes to `Either` - it is very natural.
 
-In each case error messages stored in enum is a good approach
-but when it comes to `Either` - it is very natural.
-
+    **Shown approach with error messages encapsulated in enum
+    are much more cleaner than putting them in properties files
+    or literal strings.**
+    
 * error messages
     ```
     public enum OrderErrorMessages {
@@ -65,10 +69,6 @@ but when it comes to `Either` - it is very natural.
         }
     }
     ```
-
-**Shown approach with error messages encapsulated in enum
-are much more cleaner than putting them in properties files
-or literal strings.**
 
 # tests
 ```
