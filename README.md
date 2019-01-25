@@ -8,60 +8,65 @@ using `Either` for example). For Either basics you should refer
 my other github repo: https://github.com/mtumilowicz/java11-vavr-either
 
 # project description
-Suppose we have `Sender` class:
-```
-public class Sender {
-    public Either<String, Send> send(Order order) {
-        if (!order.isComplete()) {
-            return Either.left(OrderErrorMessages.INCOMPLETE.message);
+* Suppose we have `Sender` class:
+    ```
+    public class Sender {
+        public Either<String, Send> send(Order order) {
+            if (!order.isComplete()) {
+                return Either.left(OrderErrorMessages.INCOMPLETE.message);
+            }
+            
+            return Either.right(new Send(order));
         }
-        
-        return Either.right(new Send(order));
     }
-}
-```
-* when the order is complete - sends it
-* when the order is incomplete - message
+    ```
+    * when the order is complete - sends it
+    * when the order is incomplete - message
 
 We could model it in two different ways:
 1. by throwing exception
 1. by returning `Either`
 
-In each case error messages contained in enum is a good approach
+In each case error messages stored in enum is a good approach
 but when it comes to `Either` - it is very natural.
 
-```
-public enum OrderErrorMessages {
-    INCOMPLETE("Order should be completed before sending it.");
-    public final String message;
-
-    OrderErrorMessages(String message) {
-        this.message = message;
-    }
-}
-```
-
-Order and Send are as simple as they can be:
-```
-@Value
-class Send {
-    Order order;
-}
-
-@Value
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-class Order {
-    boolean complete;
+* error messages
+    ```
+    public enum OrderErrorMessages {
+        INCOMPLETE("Order should be completed before sending it.");
+        public final String message;
     
-    static Order incomplete() {
-        return new Order(false);
+        OrderErrorMessages(String message) {
+            this.message = message;
+        }
+    }
+    ```
+
+* `Order` and `Send` are as simple as they can be:
+    ```
+    @Value
+    class Send {
+        Order order;
     }
     
-    static Order complete() {
-        return new Order(true);
+    @Value
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    class Order {
+        boolean complete;
+        
+        static Order incomplete() {
+            return new Order(false);
+        }
+        
+        static Order complete() {
+            return new Order(true);
+        }
     }
-}
-```
+    ```
+
+**Shown approach with error messages encapsulated in enum
+are much more cleaner than putting them in properties files
+or literal strings.**
 
 # tests
 ```
