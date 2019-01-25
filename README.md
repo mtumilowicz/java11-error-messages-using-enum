@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java11-error-messages-using-enum.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-error-messages-using-enum)
+
 # java11-error-messages-using-enum
 Simple implementation of error messages handling using enum.
 
